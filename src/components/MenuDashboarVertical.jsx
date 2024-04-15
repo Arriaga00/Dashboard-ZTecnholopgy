@@ -1,8 +1,14 @@
 import { Button, Divider, Menu } from "antd"
 import Logo from "../assets/logo.png";
 import { ArrowsAltOutlined, HomeOutlined, LogoutOutlined, PieChartOutlined, ProductOutlined, SettingOutlined, ShoppingCartOutlined, UserSwitchOutlined , UserOutlined} from "@ant-design/icons";
+import { NavLink  } from "react-router-dom";
 
-function getItem(label, key, icon, children, type) {
+
+
+
+const MenuDashboarVertical = () => {
+
+  function getItem(label, key, icon, children, type) {
     return {
       key,
       icon,
@@ -14,19 +20,17 @@ function getItem(label, key, icon, children, type) {
   
   const items = [
     getItem("Dashboard", "sub1", <HomeOutlined />, [
-      getItem("Home", "1", <PieChartOutlined />),
-      getItem("Product", "2", <ProductOutlined />),
-      getItem("Order", "3", <ArrowsAltOutlined />),
-      getItem("Clients", "4", <UserSwitchOutlined />),
-      getItem("Sales", "5", <ShoppingCartOutlined />),
-      getItem("Managers", "6", <UserOutlined />),
-      getItem("Setting", "7", <SettingOutlined />),
+      getItem(<NavLink to={'/user/dashboard/home'}>home</NavLink>, "1", <PieChartOutlined />),
+      getItem(<NavLink to={'/user/dashboard/products'}>products</NavLink>, '2' ,<ProductOutlined />),
+      getItem(<NavLink to={'/user/dashboard/order'}>order</NavLink>, "3", <ArrowsAltOutlined />),
+      getItem(<NavLink to={'/user/dashboard/clients'}>clients</NavLink>, "4", <UserSwitchOutlined />),
+      getItem(<NavLink to={'/user/dashboard/sales'}>sales</NavLink>, "5", <ShoppingCartOutlined />),
+      getItem(<NavLink to={'/user/dashboard/managers'}>managers</NavLink>, "6", <UserOutlined />),
+      getItem(<NavLink to={'/user/dashboard/settings'}>settings</NavLink>, "7", <SettingOutlined />),
     ]),
   ];
   
 
-const MenuDashboarVertical = () => {
-const onClick = (e) => console.log("click ", e);
   return (
     <>
             <div>
@@ -35,15 +39,14 @@ const onClick = (e) => console.log("click ", e);
             </div>
             <Divider />
             <Menu
-              onClick={onClick}
               style={{
                 width: "100%",
               }}
-              defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
               mode="inline"
               items={items}
             />
+
           </div>
           <div className="divLogout">
             <Button type="primary" className="btnLogout"  size="middle" danger ghost icon={<LogoutOutlined />}>

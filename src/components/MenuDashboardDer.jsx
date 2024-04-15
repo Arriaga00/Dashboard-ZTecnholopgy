@@ -1,7 +1,6 @@
 import { Avatar, Space, Input } from "antd";
 
 import Notificacion from "./Notificacion";
-import { UserOutlined } from "@ant-design/icons";
 const { Search } = Input;
 
 const MenuDashboardDer = () => {
@@ -17,7 +16,7 @@ const MenuDashboardDer = () => {
       </Space>
 
       <Notificacion />
-      <Avatar icon={<UserOutlined size="large" />} />
+      <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" style={{ backgroundColor: '#f56a00'}} />
       <div>
         <h5>Andres arriaga</h5>
         <p className="rol">admin</p>

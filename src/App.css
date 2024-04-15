@@ -124,3 +124,15 @@ p {
 .btnLogout{
   padding-inline: 4rem;
 }
+.main{
+  background-color: #f2f2f2;
+  height: 93%;
+  width: 100%;
+  border-radius: .7rem;
+  margin-top: 1.5rem;
+}
+
+.main {
+  padding: 1rem;
+  box-sizing: border-box;
+}
