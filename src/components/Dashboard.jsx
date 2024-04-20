@@ -8,9 +8,9 @@ const Dashboard = () => {
     <>
       <Main>
         <section className="dashboard">
-          <div className="menu">
+          <aside className="menu">
             <MenuDashboarVertical />
-          </div>
+          </aside>
 
           <div className="board">
             <div className="MenuDashboar">

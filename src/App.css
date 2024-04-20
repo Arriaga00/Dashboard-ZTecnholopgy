@@ -1,3 +1,5 @@
+
+
 #root {
   max-width: 1872px;
 }
@@ -111,9 +113,11 @@ p {
 }
 
 .rol{
-  font-weight: bold;
-  color: #94ca42;
-  font-size: .8rem;
+  color: #1677ff;
+  font-weight: 600;
+  font-size: .9rem;
+  display: inline-block;
+  padding: 0 .5rem;
 }
 
 .divLogout {
@@ -125,7 +129,7 @@ p {
   padding-inline: 4rem;
 }
 .main{
-  background-color: #f2f2f2;
+  background-color: #f8f8f8;
   height: 93%;
   width: 100%;
   border-radius: .7rem;
@@ -135,4 +139,30 @@ p {
 .main {
   padding: 1rem;
   box-sizing: border-box;
+}
+
+.container-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  gap: .7rem 0;
+  box-sizing: border-box;
+}
+
+.infoavatar{
+  cursor: pointer;
+  background-color: #e9f4fe;
+  border-radius: 10rem;
+}
+
+.popover{
+  font-weight: 400;
+}
+
+.itemAdmin{
+  color: #84cc16;
+  background-color: #ecfccb;
+  font-weight: 400;
+  padding: 0 .5rem;
+  border-radius: 1rem;
 }
