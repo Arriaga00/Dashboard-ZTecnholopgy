@@ -15,9 +15,7 @@ const MenuDashboardDer = () => {
           }}
         />
       </Space>
-
       <Notificacion />
-      
       <div className="infoavatar">
           <InfoAvatar/>
       </div>
