@@ -145,7 +145,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: stretch;
-  gap: .7rem 0;
+  gap: .7rem ;
   box-sizing: border-box;
 }
 
@@ -179,4 +179,44 @@ p {
   flex-direction: column;
   gap: 1rem;
   margin-top: 1rem;
+}
+
+
+.newProduct{
+  padding: 1rem;
+  width: 17.8rem;
+  height: 25rem;
+  box-sizing: border-box;
+}
+
+.newProduct article{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: .5rem;
+  border-radius: 1rem;
+  height: 100%;
+  box-sizing: border-box;
+  transition: all .3s ease-out;
+
+  &:hover{
+    background-color: #e9f4fe;
+    color: #3875f5;
+    border: solid 1px #3875f5;
+  }
+}
+
+.formProduct {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.price{
+  color: #3875f5;
+  font-weight: bold;
 }

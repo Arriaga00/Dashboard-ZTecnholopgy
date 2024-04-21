@@ -18,7 +18,7 @@ const Managers = () => {
     address: "",
     age: "",
     photo: "",
-    id_roles: '' 
+    id_roles: "",
   });
 
   const handleCancel = () => {
@@ -42,8 +42,11 @@ const Managers = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        message.success('The user was successfully created')
-        console.log(res),setTimeout(()=>{window.location.reload();},3000);
+        message.success("The user was successfully created");
+        console.log(res),
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
       })
       .catch((error) => console.error("Error:", error));
   };

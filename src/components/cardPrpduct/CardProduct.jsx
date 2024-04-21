@@ -1,15 +1,62 @@
-import { EditOutlined } from "@ant-design/icons";
-  import { Card , Button } from "antd";
+import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+  import { Card , Button, Popconfirm, message, Modal } from "antd";
+import { useState } from "react";
+import FormProduct from "../formProduct/FormProduct";
   const { Meta } = Card;
   
   const CardProduct = ({ infoCard }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = () => {
+      setIsModalOpen(true);
+    };
+    const handleOk = () => {
+      setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+      setIsModalOpen(false);
+    };
+
+
+
+
+    const cancel = (e) => {
+      console.log(e);
+      message.error('Process cancelled');
+    };
+
+
     return (
       <>
+      <div className="newProduct">
+        <article onClick={showModal}>
+          <h1>New Product</h1>
+          <PlusOutlined />
+        </article>
+      </div>
       {infoCard && infoCard.product && infoCard.product.map(el=> { 
+            const confirm = (e) => {
+              fetch(`http://localhost:5000/api/product/eleminar-producto/${el.id_product}`,{
+                method : 'DELETE',
+              })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                message.success("The product was successfully removed");
+                setTimeout(()=>{window.location.reload();},2000)
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+              console.log(e);
+            };
+
+
+
           return (
           <Card key= {el.id_product}
           style={{
-            width: 270,
+            width: 250,
             margin: '1rem',
           }}
           cover={
@@ -20,7 +67,17 @@ import { EditOutlined } from "@ant-design/icons";
             />
           }
           actions={[
-            <Button key={el.id_product} type="primary" danger ghost>delete</Button>,
+            <Popconfirm
+            key={el.id_product}
+            title="Delete the product"
+            description={`Are you sure to delete this ${el.name}`}
+            onConfirm={confirm}
+            onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button danger>Delete</Button>
+          </Popconfirm>,
             <EditOutlined key="edit" />,
           ]}
         >
@@ -28,8 +85,15 @@ import { EditOutlined } from "@ant-design/icons";
             title={el.name}
             description={el.description}
           />
-        </Card>)
+          <p className="price">$ {el.price}</p>
+        </Card>
+        )
       })}
+
+      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText="Create">
+        <FormProduct/>
+      </Modal>
+
       </>
     );
   };
