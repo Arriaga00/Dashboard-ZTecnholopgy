@@ -4,21 +4,37 @@ import { useState } from "react";
 import FormProduct from "../formProduct/FormProduct";
   const { Meta } = Card;
   
-  const CardProduct = ({ infoCard }) => {
+  const CardProduct = ({ infoCard, steNewProduct , newProduct }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOk = () => {
+      fetch('http://localhost:5000/api/product/guardar-producto',{
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(newProduct)
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          message.success("The product was successfully created");
+          console.log(res),
+            setTimeout(() => {
+              window.location.reload();
+            }, 2500);
+        })
+        .catch((error) => console.error("Error:", error))
+      setIsModalOpen(false);
+    };
+
 
     const showModal = () => {
       setIsModalOpen(true);
     };
-    const handleOk = () => {
-      setIsModalOpen(false);
-    };
+    
     const handleCancel = () => {
       setIsModalOpen(false);
     };
-
-
-
 
     const cancel = (e) => {
       console.log(e);
@@ -91,7 +107,7 @@ import FormProduct from "../formProduct/FormProduct";
       })}
 
       <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText="Create">
-        <FormProduct/>
+        <FormProduct  steNewProduct={steNewProduct} newProduct={newProduct}/>
       </Modal>
 
       </>
