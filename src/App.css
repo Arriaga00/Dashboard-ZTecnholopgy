@@ -160,11 +160,9 @@ p {
 }
 
 .itemAdmin{
-  color: #84cc16;
-  background-color: #ecfccb;
-  font-weight: 400;
-  padding: 0 .5rem;
-  border-radius: 1rem;
+  color: #93e01f;
+  font-weight: bold;
+
 }
 
 .createRol{
@@ -198,6 +196,7 @@ p {
   background-color: #ffffff;
   padding: .5rem;
   border-radius: .5rem;
+  border: solid 1px #3875f5;
   height: 100%;
   box-sizing: border-box;
   transition: all .3s ease-out;
@@ -205,7 +204,6 @@ p {
   &:hover{
     background-color: #e9f4fe;
     color: #3875f5;
-    border: solid 1px #3875f5;
   }
 }
 
@@ -218,5 +216,38 @@ p {
 
 .price{
   color: #3875f5;
+  font-weight: bold;
+}
+
+.newSale article{
+  padding: 1rem;
+  width: 17.8rem;
+  height: 10rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: .5rem;
+  border: solid 1px #3875f5;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  transition: all .3s ease-out;
+
+  &:hover{
+    background-color: #e9f4fe;
+    color: #3875f5;
+  }
+}
+
+
+.infoUser{
+  font-weight: bold;
+  color: #3875f5
+}
+
+.Your{
   font-weight: bold;
 }

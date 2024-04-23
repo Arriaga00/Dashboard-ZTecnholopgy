@@ -1,4 +1,4 @@
-import { Button, Divider, Menu } from "antd";
+import { Button, Divider, Menu, message } from "antd";
 import Logo from "../assets/logo.png";
 import {
   ArrowsAltOutlined,
@@ -23,7 +23,7 @@ const MenuDashboarVertical = () => {
     localStorage.setItem("keySelect", keySelect);
   }, [keySelect]);
 
-  function getItem(label, key, icon, children, type) {
+  const getItem =(label, key, icon, children, type) => {
     return {
       key,
       icon,
@@ -32,6 +32,13 @@ const MenuDashboarVertical = () => {
       type,
     };
   }
+
+ const handleClik = () => {
+  message.info('Closed Section')
+    setTimeout(()=>{
+      window.location.href ='http://localhost:5173/auth'
+    },2000)
+ }
 
   const items = [
     getItem("Dashboard", "sub1", <HomeOutlined />, [
@@ -56,7 +63,7 @@ const MenuDashboarVertical = () => {
         <UserSwitchOutlined />
       ),
       getItem(
-        <NavLink to={"/user/dashboard/sales"}>sales</NavLink>,
+        <NavLink to={"/user/dashboard/quote"}>quotes</NavLink>,
         "5",
         <ShoppingCartOutlined />
       ),
@@ -102,6 +109,7 @@ const MenuDashboarVertical = () => {
           size="middle"
           danger
           ghost
+          onClick={handleClik}
           icon={<LogoutOutlined />}
         >
           Logout{" "}

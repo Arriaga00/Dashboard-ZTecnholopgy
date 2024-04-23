@@ -1,15 +1,44 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import Logo2 from "../assets/logo2.png";
+import { useContext } from "react";
+import Context from "../context/Context";
+import { useNavigate } from 'react-router-dom';
 
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
 
 const Login = () => {
+  const navigate  = useNavigate();
+  const {setInfoUser} = useContext(Context)
+
+  const onFinish = (values) => {
+    console.log("Success:", values);
+    fetch('http://localhost:5000/api/auth/login',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    }).then(res => {
+      if (!res.ok) {
+        message.error('Usuario o contraseña incorrectos');
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then(res => {
+      setInfoUser(res);
+      res.user.id_roles === 1 ? message.success('Welcome Administrator') : message.success('Welcome Manager');
+      setTimeout(()=>{navigate('/user/dashboard/home')},2000)
+    })
+    .catch(err => console.error(err));
+  }
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+  
+
+
   return (
     <>
       <section className="loguin">
@@ -37,14 +66,14 @@ const Login = () => {
             }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            autoComplete="off"
+            autoComplete="on"
           >
-            <Form.Item  style={{width : '100%'}}>
-              <Input style={{height : '2.5rem' }} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" rules={[{required: true,message: "Please input your username!"}]}/>
+            <Form.Item name="email" style={{width : '100%'}}>
+              <Input  style={{height : '2.5rem' }} type="email" prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" rules={[{required: true,message: "Please input your username!"}]} />
             </Form.Item>
 
-            <Form.Item style={{width : '100%',}} >
-              <Input.Password  style={{height : '2.5rem' , width : '100%' ,}} prefix={<LockOutlined className="site-form-item-icon"/>} placeholder="password" rules={[{required: true,message: "Please input your password!"}]}/>
+            <Form.Item name="password" style={{width : '100%',}} >
+              <Input.Password   style={{height : '2.5rem' , width : '100%' ,}}  prefix={<LockOutlined className="site-form-item-icon"/>} placeholder="password" rules={[{required: true,message: "Please input your password!"}]} />
             </Form.Item>
 
             <Form.Item >

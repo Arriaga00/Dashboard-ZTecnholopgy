@@ -9,9 +9,9 @@ const MenuDashboardDer = () => {
     <>
       <Space direction="vertical">
         <Search
-          placeholder="search"
+          placeholder="search orders"
           style={{
-            width: "15rem",
+            width: "20rem",
           }}
         />
       </Space>

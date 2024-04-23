@@ -1,8 +1,11 @@
+import GraficaHome from "../components/graficas/GraficaHome"
 
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+    <GraficaHome/>
+    </>
   )
 }
 
