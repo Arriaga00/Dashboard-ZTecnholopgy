@@ -32,7 +32,8 @@ const Login = () => {
     })
     .then(res => {
       setInfoUser(res);
-      window.localStorage.setItem('loguinUser', JSON.stringify(res))
+      window.localStorage.setItem('infoUser', JSON.stringify(res))
+      window.localStorage.setItem('loguinUser', true)
       res.user.id_roles === 1 ? message.success('Welcome Administrator') : message.success('Welcome Manager');
       setTimeout(()=>{navigate('/user/dashboard/home')},2000)
     })
