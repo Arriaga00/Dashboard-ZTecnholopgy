@@ -34,8 +34,9 @@ const MenuDashboarVertical = () => {
   }
 
  const handleClik = () => {
-  message.info('Closed Section')
+  message.success('Closed Section')
     setTimeout(()=>{
+      localStorage.clear()
       window.location.href ='http://localhost:5173/auth'
     },2000)
  }

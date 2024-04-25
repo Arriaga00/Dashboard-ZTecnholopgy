@@ -31,7 +31,6 @@ const InfoAvatar = () => {
       <ConfigProvider
         button={{
           style: {
-
             margin: 4,
           },
         }}

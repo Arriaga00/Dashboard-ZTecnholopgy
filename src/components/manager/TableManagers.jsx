@@ -1,6 +1,11 @@
 import { Button, Popconfirm, Space, Table, Tag, message } from "antd";
+import { useContext } from "react";
+import Context from "../../context/Context";
 
-const TableManagers = ({ infoUser }) => {
+const TableManagers = ({ infoUserSave }) => {
+
+  const {infoUser} = useContext(Context)
+
   const confirm = (record) => {
     fetch(`http://localhost:5000/api/usuarios/eliminar-usuario/${record.id}`, {
       method: "DELETE",
@@ -20,6 +25,8 @@ const TableManagers = ({ infoUser }) => {
     console.log(e.target);
     message.error("Operation cancelled");
   };
+
+
 
   const columns = [
     {
@@ -42,11 +49,6 @@ const TableManagers = ({ infoUser }) => {
       title: "Email",
       dataIndex: "email",
       key: "email",
-    },
-    {
-      title: "Password",
-      dataIndex: "password",
-      key: "password",
     },
     {
       title: "Age",
@@ -84,27 +86,36 @@ const TableManagers = ({ infoUser }) => {
       title: "Action",
       key: "action",
       render: (text, record) => (
-        <Space size="middle">
-          <a>Edit</a>
-          <Popconfirm
-            title="Delete the User"
-            description="Are you sure to delete this User?"
-            onConfirm={() => confirm(record)}
-            onCancel={cancel}
-            okText="Yes"
-            cancelText="No"
-            recordKey={record.id}
-          >
-            <Button danger>Delete</Button>
-          </Popconfirm>
-        </Space>
+        infoUser.id_roles === 1 ? (
+          <Space size="middle">
+            <a>Edit</a>
+            <Popconfirm
+              title="Delete the User"
+              description="Are you sure to delete this User?"
+              onConfirm={() => confirm(record)}
+              onCancel={cancel}
+              okText="Yes"
+              cancelText="No"
+              recordKey={record.id}
+            >
+              <Button danger>Delete</Button>
+            </Popconfirm>
+          </Space>
+        ) : null
       ),
     },
   ];
 
+  if (infoUser.user.id_roles === 1) {
+    columns.splice(4, 0, {
+      title: "Password",
+      dataIndex: "password",
+      key: "password",
+    });
+  }
   return (
     <>
-      <Table columns={columns} dataSource={infoUser} />
+      <Table columns={columns} dataSource={infoUserSave} />
     </>
   );
 };

@@ -14,6 +14,9 @@ const GraficaHome = () => {
       chart: {
         height: 350,
         type: 'area',
+        zoom: {
+          enabled: false
+        },
       },
       dataLabels: {
         enabled: false

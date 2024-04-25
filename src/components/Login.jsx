@@ -10,6 +10,11 @@ const Login = () => {
   const navigate  = useNavigate();
   const {setInfoUser} = useContext(Context)
 
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+  
+
   const onFinish = (values) => {
     console.log("Success:", values);
     fetch('http://localhost:5000/api/auth/login',{
@@ -27,16 +32,12 @@ const Login = () => {
     })
     .then(res => {
       setInfoUser(res);
+      window.localStorage.setItem('loguinUser', JSON.stringify(res))
       res.user.id_roles === 1 ? message.success('Welcome Administrator') : message.success('Welcome Manager');
       setTimeout(()=>{navigate('/user/dashboard/home')},2000)
     })
-    .catch(err => console.error(err));
+    .catch(err => onFinishFailed(err));
   }
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-  
 
 
   return (

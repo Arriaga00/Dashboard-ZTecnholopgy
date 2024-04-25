@@ -1,12 +1,14 @@
 import { Divider, Modal, message } from "antd";
 import ManagerCard from "../components/manager/ManagerCard";
 import TableManagers from "../components/manager/TableManagers";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FormUser from "../components/formUser/FormUser";
+import Context from "../context/Context";
 
 const Managers = () => {
+  const { infoUser } = useContext(Context);
   const [userRol, setUserRol] = useState("");
-  const [infoUser, setInfoUser] = useState([]);
+  const [infoUserSave, setInfoUserSave] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form, setForm] = useState({
     document: "",
@@ -70,7 +72,7 @@ const Managers = () => {
             role: [role],
           };
         });
-        setInfoUser(formattedData);
+        setInfoUserSave(formattedData);
       });
   };
 
@@ -81,27 +83,30 @@ const Managers = () => {
   return (
     <>
       <section>
-        <div className="createRol">
-          <ManagerCard
-            title={"Admin"}
-            description={"Create Admin"}
-            img={"https://api.dicebear.com/7.x/miniavs/svg?seed=1"}
-            showModal={showModal}
-            setUserRol={setUserRol}
-            keyRol={1}
-          />
-          <ManagerCard
-            title={"Manager"}
-            description={"Create Manager"}
-            img={"https://api.dicebear.com/7.x/miniavs/svg?seed=8"}
-            showModal={showModal}
-            setUserRol={setUserRol}
-            keyRol={2}
-          />
-        </div>
+        {infoUser.user.id_roles === 1 ? (
+          <div className="createRol">
+            <ManagerCard
+              title={"Admin"}
+              description={"Create Admin"}
+              img={"https://api.dicebear.com/7.x/miniavs/svg?seed=1"}
+              showModal={showModal}
+              setUserRol={setUserRol}
+              keyRol={1}
+            />
+            <ManagerCard
+              title={"Manager"}
+              description={"Create Manager"}
+              img={"https://api.dicebear.com/7.x/miniavs/svg?seed=8"}
+              showModal={showModal}
+              setUserRol={setUserRol}
+              keyRol={2}
+            />
+          </div>
+        ) : null}
+
         <Divider orientation="left">List users</Divider>
         <div>
-          <TableManagers infoUser={infoUser} />
+          <TableManagers infoUserSave={infoUserSave} />
         </div>
       </section>
       <Modal
