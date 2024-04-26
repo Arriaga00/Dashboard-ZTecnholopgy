@@ -13,7 +13,6 @@ const Login = () => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  
 
   const onFinish = (values) => {
     console.log("Success:", values);

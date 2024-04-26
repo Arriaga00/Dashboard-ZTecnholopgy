@@ -6,6 +6,7 @@ const TableManagers = ({ infoUserSave }) => {
 
   const {infoUser} = useContext(Context)
 
+
   const confirm = (record) => {
     fetch(`http://localhost:5000/api/usuarios/eliminar-usuario/${record.id}`, {
       method: "DELETE",
@@ -86,7 +87,7 @@ const TableManagers = ({ infoUserSave }) => {
       title: "Action",
       key: "action",
       render: (text, record) => (
-        infoUser.id_roles === 1 ? (
+        infoUser.user.id_roles === 1 ? (
           <Space size="middle">
             <a>Edit</a>
             <Popconfirm

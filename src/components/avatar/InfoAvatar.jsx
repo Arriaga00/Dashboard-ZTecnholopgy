@@ -1,10 +1,28 @@
-import { Avatar,  ConfigProvider, Popover } from "antd";
+import { Avatar,  ConfigProvider, Popover , Spin } from "antd";
 import { useContext } from "react";
 import Context from "../../context/Context";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const InfoAvatar = () => {
 
   const {infoUser} = useContext(Context)
+  
+
+  if (!infoUser) {
+    return (
+      <Spin
+        indicator={
+          <LoadingOutlined
+            style={{
+              fontSize: 24,
+            }}
+            spin
+          />
+        }
+      />
+    );
+  }
+
 
   const user = infoUser && infoUser.user ? infoUser.user : null;
   const text = <span className="Your">Your Information</span>;

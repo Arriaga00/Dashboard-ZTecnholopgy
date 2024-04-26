@@ -1,11 +1,39 @@
-import { Divider, Modal, message } from "antd";
+import { Divider, Modal, Spin, Tag, message } from "antd";
 import ManagerCard from "../components/manager/ManagerCard";
 import TableManagers from "../components/manager/TableManagers";
 import { useContext, useEffect, useState } from "react";
 import FormUser from "../components/formUser/FormUser";
 import Context from "../context/Context";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Managers = () => {
+  const getDataUsers = () => {
+    fetch("http://localhost:5000/api/usuarios/consultar-usuarios")
+      .then((res) => res.json())
+      .then((res) => {
+        const formattedData = res.users.map((user) => {
+          let role = user.id_roles === 1 ? "Admin" : "Manager";
+          return {
+            key: user.id,
+            id: user.id,
+            document: user.document,
+            name: user.names,
+            email: user.email,
+            password: user.confirmPassword,
+            age: user.age,
+            phone: user.cellphone,
+            address: user.address,
+            role: [role],
+          };
+        });
+        setInfoUserSave(formattedData);
+      });
+  };
+
+  useEffect(() => {
+    getDataUsers();
+  }, []);
+
   const { infoUser } = useContext(Context);
   const [userRol, setUserRol] = useState("");
   const [infoUserSave, setInfoUserSave] = useState([]);
@@ -22,6 +50,21 @@ const Managers = () => {
     photo: "",
     id_roles: "",
   });
+
+  if (!infoUser) {
+    return (
+      <Spin
+        indicator={
+          <LoadingOutlined
+            style={{
+              fontSize: 24,
+            }}
+            spin
+          />
+        }
+      />
+    );
+  }
 
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -53,32 +96,7 @@ const Managers = () => {
       .catch((error) => console.error("Error:", error));
   };
 
-  const getDataUsers = () => {
-    fetch("http://localhost:5000/api/usuarios/consultar-usuarios")
-      .then((res) => res.json())
-      .then((res) => {
-        const formattedData = res.users.map((user) => {
-          let role = user.id_roles === 1 ? "Admin" : "Manager";
-          return {
-            key: user.id,
-            id: user.id,
-            document: user.document,
-            name: user.names,
-            email: user.email,
-            password: user.confirmPassword,
-            age: user.age,
-            phone: user.cellphone,
-            address: user.address,
-            role: [role],
-          };
-        });
-        setInfoUserSave(formattedData);
-      });
-  };
-
-  useEffect(() => {
-    getDataUsers();
-  }, []);
+  console.log(infoUserSave)
 
   return (
     <>
@@ -104,7 +122,14 @@ const Managers = () => {
           </div>
         ) : null}
 
-        <Divider orientation="left">List users</Divider>
+        <Divider orientation="left">
+          List users{' '}
+          {
+            <Tag bordered={false} color="purple">
+              {infoUserSave.length}
+            </Tag>
+          }
+        </Divider>
         <div>
           <TableManagers infoUserSave={infoUserSave} />
         </div>

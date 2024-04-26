@@ -150,6 +150,7 @@ p {
 }
 
 .infoavatar{
+  min-width: 147px;
   cursor: pointer;
   background-color: #e9f4fe;
   border-radius: 10rem;
