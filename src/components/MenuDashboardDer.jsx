@@ -1,4 +1,4 @@
-import {  Space, Input } from "antd";
+import { Space, Input } from "antd";
 
 import Notificacion from "./Notificacion";
 import InfoAvatar from "./avatar/InfoAvatar";
@@ -17,7 +17,7 @@ const MenuDashboardDer = () => {
       </Space>
       <Notificacion />
       <div className="infoavatar">
-          <InfoAvatar/>
+        <InfoAvatar />
       </div>
     </>
   );

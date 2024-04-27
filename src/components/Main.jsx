@@ -1,12 +1,9 @@
-
 const Main = ({ children }) => {
   return (
     <>
-        <section>
-            {children}
-        </section>
+      <section>{children}</section>
     </>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

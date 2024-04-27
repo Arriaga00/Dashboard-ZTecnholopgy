@@ -11,7 +11,6 @@ const Dashboard = () => {
           <aside className="menu">
             <MenuDashboarVertical />
           </aside>
-
           <div className="board">
             <div className="MenuDashboar">
               <h1>Dashboard</h1>

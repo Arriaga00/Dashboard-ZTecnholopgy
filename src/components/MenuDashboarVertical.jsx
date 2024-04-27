@@ -23,7 +23,7 @@ const MenuDashboarVertical = () => {
     localStorage.setItem("keySelect", keySelect);
   }, [keySelect]);
 
-  const getItem =(label, key, icon, children, type) => {
+  const getItem = (label, key, icon, children, type) => {
     return {
       key,
       icon,
@@ -31,15 +31,15 @@ const MenuDashboarVertical = () => {
       label,
       type,
     };
-  }
+  };
 
- const handleClik = () => {
-  message.success('Closed Section')
-    setTimeout(()=>{
-      localStorage.clear()
-      window.location.href ='http://localhost:5173/auth'
-    },2000)
- }
+  const handleClik = () => {
+    message.success("Closed Section");
+    setTimeout(() => {
+      localStorage.clear();
+      window.location.href = "http://localhost:5173/auth";
+    }, 2000);
+  };
 
   const items = [
     getItem("Dashboard", "sub1", <HomeOutlined />, [

@@ -21,7 +21,6 @@ const ManagerCard = ({
       style={{
         width: 250,
       }}
-      
       actions={[
         <Button
           onClick={() => {

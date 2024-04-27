@@ -7,8 +7,7 @@ import { useContext, useEffect } from "react";
 import Context from "../context/Context";
 
 const RouterPrincipal = () => {
-
-  const { setInfoUser } = useContext(Context)
+  const { setInfoUser } = useContext(Context);
 
   const PersistenceSession = () => {
     const storage = localStorage.getItem("infoUser");
@@ -20,16 +19,13 @@ const RouterPrincipal = () => {
 
   useEffect(() => {
     PersistenceSession();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  
-
 
   return (
     <Routes>
       <Route path="/auth" element={<Login />} />
-      <Route element={<PrivateRoute/>}>
+      <Route element={<PrivateRoute />}>
         <Route path="/user/*" element={<RouterUser />} />
       </Route>
       <Route path="/*" element={<Navigate to={"/auth"} />} />

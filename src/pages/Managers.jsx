@@ -96,7 +96,7 @@ const Managers = () => {
       .catch((error) => console.error("Error:", error));
   };
 
-  console.log(infoUserSave)
+  console.log(infoUserSave);
 
   return (
     <>
@@ -123,7 +123,7 @@ const Managers = () => {
         ) : null}
 
         <Divider orientation="left">
-          List users{' '}
+          List users{" "}
           {
             <Tag bordered={false} color="purple">
               {infoUserSave.length}

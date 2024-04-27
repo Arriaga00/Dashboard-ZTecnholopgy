@@ -5,9 +5,9 @@ import Dashboard from "../components/Dashboard";
 const RouterUser = () => {
   return (
     <Routes>
-      <Route path="/dashboard/*" element={<Dashboard/>}/>
+      <Route path="/dashboard/*" element={<Dashboard />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default RouterUser
+export default RouterUser;

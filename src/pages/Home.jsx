@@ -1,12 +1,11 @@
-import GraficaHome from "../components/graficas/GraficaHome"
-
+import GraficaHome from "../components/graficas/GraficaHome";
 
 const Home = () => {
   return (
     <>
-    <GraficaHome/>
+      <GraficaHome />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

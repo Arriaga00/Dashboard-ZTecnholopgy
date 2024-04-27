@@ -3,9 +3,7 @@ import { useContext } from "react";
 import Context from "../../context/Context";
 
 const TableManagers = ({ infoUserSave }) => {
-
-  const {infoUser} = useContext(Context)
-
+  const { infoUser } = useContext(Context);
 
   const confirm = (record) => {
     fetch(`http://localhost:5000/api/usuarios/eliminar-usuario/${record.id}`, {
@@ -15,7 +13,9 @@ const TableManagers = ({ infoUserSave }) => {
       .then((data) => {
         console.log(data);
         message.success("Successfully removed");
-        setTimeout(()=>{window.location.reload();},3000)
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -26,8 +26,6 @@ const TableManagers = ({ infoUserSave }) => {
     console.log(e.target);
     message.error("Operation cancelled");
   };
-
-
 
   const columns = [
     {
@@ -86,7 +84,7 @@ const TableManagers = ({ infoUserSave }) => {
     {
       title: "Action",
       key: "action",
-      render: (text, record) => (
+      render: (text, record) =>
         infoUser.user.id_roles === 1 ? (
           <Space size="middle">
             <a>Edit</a>
@@ -102,8 +100,7 @@ const TableManagers = ({ infoUserSave }) => {
               <Button danger>Delete</Button>
             </Popconfirm>
           </Space>
-        ) : null
-      ),
+        ) : null,
     },
   ];
 
