@@ -1,26 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import CardProduct from "../components/cardPrpduct/CardProduct";
+import Context from "../context/Context";
 
 const Products = () => {
-  const [infoCard, setInfoCard] = useState([]);
+  const { infoCard } = useContext(Context);
   const [newProduct, steNewProduct] = useState({
     productName: "",
     description: "",
     price: "",
     image: "",
   });
-
-  const getData = () => {
-    fetch("http://localhost:5000/api/product/consultar-productos")
-      .then((res) => res.json())
-      .then((res) => {
-        setInfoCard(res);
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <>

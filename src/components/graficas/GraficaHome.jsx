@@ -4,11 +4,11 @@ const GraficaHome = () => {
   const chartData = {
     series: [
       {
-        name: "Cotizaciones",
+        name: "Quotes",
         data: [31, 40, 28, 51, 42, 109, 100],
       },
       {
-        name: "ventas",
+        name: "Completed Orders",
         data: [11, 32, 45, 32, 34, 52, 41],
       },
     ],
