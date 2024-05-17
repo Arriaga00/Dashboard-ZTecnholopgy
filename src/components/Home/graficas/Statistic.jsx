@@ -1,8 +1,43 @@
-import { Col, Row, Statistic } from "antd";
+import { Col, Row, Spin, Statistic } from "antd";
 import CountUp from "react-countup";
 import TimeInSesion from "./TimeInSesion";
+import Context from "../../../context/Context";
+import { useContext } from "react";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Statistict = () => {
+  const { infoClient, orders } = useContext(Context);
+
+  if (!infoClient.length) {
+    return (
+      <Spin
+        style={{ display: "none" }}
+        indicator={
+          <LoadingOutlined
+            style={{
+              fontSize: 24,
+            }}
+            spin
+          />
+        }
+      />
+    );
+  }
+
+  let total = 0;
+
+  orders.forEach((order) => {
+    const orderTotal = parseFloat(order.total);
+
+    if (order.status === "completed" || order.status === "pending") {
+      total += orderTotal;
+    } else if (order.status === "cancelled") {
+      total -= orderTotal;
+    }
+  });
+
+  const user = infoClient.length;
+
   const formatter = (value) => <CountUp end={value} separator="," />;
   return (
     <>
@@ -20,7 +55,7 @@ const Statistict = () => {
                   minWidth: "15rem",
                 }}
                 title="Active Users"
-                value={112893}
+                value={user}
                 formatter={formatter}
               />
             </Col>
@@ -35,7 +70,7 @@ const Statistict = () => {
                   minWidth: "15rem",
                 }}
                 title="Account Balance (CNY)"
-                value={112893}
+                value={total}
                 precision={2}
                 formatter={formatter}
               />

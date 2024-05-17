@@ -28,6 +28,8 @@ const DrawerDetailOrder = () => {
     );
   }
 
+  console.log(orderDetailForId.detail);
+
   const onClose = () => {
     setOpenDraweOrderDetail(false);
   };

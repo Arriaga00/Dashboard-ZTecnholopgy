@@ -95,7 +95,6 @@ const TableManagers = ({ infoUserSave }) => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <a>Edit</a>
           <Popconfirm
             title="Delete the User"
             description="Are you sure to delete this User?"
